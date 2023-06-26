@@ -1,3 +1,6 @@
+import csv
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -5,7 +8,7 @@ class Item:
     pay_rate = 0.8
     all = []
 
-    def __init__(self, name: str, price: float, quantity: int) -> None:
+    def __init__(self, __name: str, price: float, quantity: int) -> None:
         """
         Создание экземпляра класса item.
 
@@ -13,7 +16,7 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.name = name
+        self.__name = __name
         self.price = price
         self.quantity = quantity
         self.all.append(self)
@@ -31,3 +34,22 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price *= self.pay_rate
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, new_name):
+        self.__name = new_name[:10]
+
+    @classmethod
+    def instantiate_from_csv(cls, filename):
+        with open(filename, 'r', encoding='windows-1251') as file:
+            reader = csv.DictReader(file, delimiter=',')
+            for row in reader:
+                return cls(row['name'], float(row['price']), cls.string_to_number(row['quantity'])
+
+    @staticmethod
+    def string_to_number(value):
+        return int(float(value))
