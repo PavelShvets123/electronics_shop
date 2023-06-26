@@ -44,12 +44,13 @@ class Item:
         self.__name = new_name[:10]
 
     @classmethod
-    def instantiate_from_csv(cls, filename):
-        with open(filename, 'r', encoding='windows-1251') as file:
+    def instantiate_from_csv(cls) -> list:
+        with open('items.csv', 'r', encoding='windows-1251') as file:
             reader = csv.DictReader(file, delimiter=',')
             for row in reader:
-                return cls(row['name'], float(row['price']), cls.string_to_number(row['quantity'])
+                cls.all.append(cls(row['name'], int(row['price']), int(row['quantity'])))
+            return cls.all
 
     @staticmethod
-    def string_to_number(value):
-        return int(float(value))
+    def string_to_number():
+        return int(float())
