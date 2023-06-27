@@ -8,6 +8,7 @@ class Item:
     pay_rate = 0.8
     all = []
 
+
     def __init__(self, __name: str, price: float, quantity: int) -> None:
         """
         Создание экземпляра класса item.
@@ -48,11 +49,11 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        with open('./items.csv', 'r', encoding='windows-1251') as file:
+        with open('..\src\items.csv', 'r', encoding='windows-1251') as file:
             reader = csv.DictReader(file, delimiter=',')
+            cls.all.clear()
             for row in reader:
                 cls.all.append(cls(row['name'], int(row['price']), int(row['quantity'])))
-            return cls.all
 
     @staticmethod
     def string_to_number(item):
