@@ -41,11 +41,14 @@ class Item:
 
     @name.setter
     def name(self, new_name):
-        self.__name = new_name[:10]
+        if len(new_name) <= 10:
+            self.__name = new_name
+        else:
+            self.__name = new_name[:9]
 
     @classmethod
     def instantiate_from_csv(cls):
-        with open('items.csv', 'r', encoding='windows-1251') as file:
+        with open('./items.csv', 'r', encoding='windows-1251') as file:
             reader = csv.DictReader(file, delimiter=',')
             for row in reader:
                 cls.all.append(cls(row['name'], int(row['price']), int(row['quantity'])))
