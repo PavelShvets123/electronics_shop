@@ -31,3 +31,11 @@ def test_instantiate_from_csv():
 def test_name():
     Item.name = 'Смартфон'
     assert Item.name == 'Смартфон'
+def test_repr():
+    item1 = Item("Смартфон", 10000, 20)
+    assert repr(item1) == "Item('Смартфон', 10000, 20)"
+
+def test_sts():
+    item1 = Item("Смартфон", 10000, 20)
+    assert str(item1) == 'Смартфон'
+

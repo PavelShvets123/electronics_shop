@@ -8,8 +8,7 @@ class Item:
     pay_rate = 0.8
     all = []
 
-
-    def __init__(self, __name: str, price: float, quantity: int) -> None:
+    def __init__(self, name: str, price: float, quantity: int) -> None:
         """
         Создание экземпляра класса item.
 
@@ -17,13 +16,16 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.__name = __name
+        self.__name = name
         self.price = price
         self.quantity = quantity
         self.all.append(self)
 
     def __repr__(self):
-        return f'Item({self.__name}, {self.price}, {self.quantity})'
+        return f"Item('{self.__name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        return f'{self.__name}'
 
     def calculate_total_price(self) -> float:
         """
@@ -57,7 +59,6 @@ class Item:
             cls.all.clear()
             for row in reader:
                 cls(row['name'], int(row['price']), int(row['quantity']))
-
 
     @staticmethod
     def string_to_number(item):
