@@ -63,3 +63,8 @@ class Item:
     @staticmethod
     def string_to_number(item):
         return int(float(item))
+
+    def __add__(self, other):
+        if not isinstance(other, Item):
+            raise ValueError('.')
+        return self.quantity + other.quantity
