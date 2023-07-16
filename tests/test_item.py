@@ -43,8 +43,8 @@ def test_sts():
 
 def test_instantiate_from_csv():
     with pytest.raises(FileNotFoundError):
-        Item.instantiate_from_csv(path="")
+        Item.instantiate_from_csv(path='item.csv')
 
     with pytest.raises(InstantiateCSVError):
-        Item.instantiate_from_csv(path='src/w_items.csv')
+        Item.instantiate_from_csv(path='../src/1.csv')
 

@@ -65,6 +65,7 @@ class Item:
                 for row in reader:
                     if len(row) != 3:
                         raise InstantiateCSVError(f'Файл item.csv поврежден')
+
                     cls(row['name'], int(row['price']), int(row['quantity']))
         except FileNotFoundError:
             raise FileNotFoundError(f'Отсутствует файл items.csv')
